@@ -15,6 +15,9 @@ require_once(dirname(__FILE__) . DS . 'helper.php');
 // Application object
 $app = JFactory::getApplication();
 
+// Current component Name
+$component = JRequest::getCmd('option');
+
 // Global document object
 $doc = JFactory::getDocument();
 
@@ -24,17 +27,15 @@ $listsHelper = new modK2RelatedListsHelper($params);
 // Retrieve current tags
 $lists = $listsHelper->getLists();
 
-// Current component Name
-$component = JRequest::getCmd('option');
-
 // Get current view
 $view = JRequest::getVar('view');
 
-// Check if there are tags and K2 is the current component
+// Check the current view and if there are results
 if ($component == "com_k2" && $view == "item" && $lists) {
 
 	// Render module output
 	require JModuleHelper::getLayoutPath('mod_k2_related_lists');
+
 	/**
 	 * Load CSS files, first checking for template override of CSS.
 	 *
@@ -43,11 +44,10 @@ if ($component == "com_k2" && $view == "item" && $lists) {
 	 * JURI::base():  Base URI of the Joomla site. If TRUE, then only the path, trailing "/" omitted, to the Joomla site is returned;
 	 * otherwise the scheme, host and port are prepended to the path.
 	 */
-	/*
-	if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/css/mod_k2_item_filter/tags.css')) {
-		$doc->addStyleSheet(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/css/mod_k2_item_filter/tags.css');
-	} elseif (file_exists(JPATH_SITE . '/modules/mod_k2_item_filter/tmpl/css/tags.css')) {
-		$doc->addStyleSheet(JURI::base(TRUE) . '/modules/mod_k2_item_filter/tmpl/css/tags.css');
+
+	if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/css/mod_k2_related_lists/lists.css')) {
+		$doc->addStyleSheet(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/css/mod_k2_related_lists/lists.css');
+	} elseif (file_exists(JPATH_SITE . '/modules/mod_k2_related_lists/tmpl/css/lists.css')) {
+		$doc->addStyleSheet(JURI::base(TRUE) . '/modules/mod_k2_related_lists/tmpl/css/lists.css');
 	}
-	*/
 }

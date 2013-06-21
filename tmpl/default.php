@@ -14,10 +14,7 @@ foreach ($lists as $tag => $items) : ?>
 	<?php foreach ($items as $item) : ?>
 		<ul>
 			<li>
-				<?php echo $item->id ?>
-			</li>
-			<li>
-				<?php echo $item->extraFields->Class->value ?>
+				<?php echo $item->title ?>
 			</li>
 			<li>
 				<?php echo $item->extraFields->test->value ?>

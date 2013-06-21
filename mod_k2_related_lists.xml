@@ -22,18 +22,18 @@
 	</languages>
 
 	<params>
-		<param name="countText"
+		<param name="tagLimit"
 		       type="text"
-		       default="All in"
-		       label="MOD_K2_RELATED_LISTS_COUNT_TEXT_LABEL"
-		       description="MOD_K2_RELATED_LISTS_COUNT_TEXT_DESC"/>
-		<param name="auth"
+		       default=""
+		       label="MOD_K2_RELATED_LISTS_TAG_LIMIT_LABEL"
+		       description="MOD_K2_RELATED_LISTS_TAG_LIMIT_DESC"/>
+		<param name="includeSelf"
 		       type="list"
 		       default=""
-		       label="Authentication"
-		       description="">
-			<option value="">Disabled</option>
-			<option value="1">Enabled</option>
+		       label="MOD_K2_RELATED_LISTS_INCLUDE_SELF_LABEL"
+		       description="MOD_K2_RELATED_LISTS_INCLUDE_SELF_DESC">
+			<option value="">No</option>
+			<option value="1">Yes</option>
 		</param>
 
 		<param name="moduleclass_sfx"
