@@ -90,7 +90,7 @@ class modK2RelatedListsHelper {
 			foreach ($items as $item) {
 
 				/**
-				 * Retrieve and attach extra field names and values to $item object, if they exist.
+				 * Check for and attach extra field names and values to $item object.
 				 */
 				$extraFields = $itemModel->getItemExtraFields($item->extra_fields, $item);
 
@@ -100,6 +100,24 @@ class modK2RelatedListsHelper {
 						$item->extraFields->$alias->name  = $extraField->name;
 						$item->extraFields->$alias->value = $extraField->value;
 					}
+				}
+
+				/**
+				 * Check for and attach plugin data to $item object.
+				 */
+				if ($item->plugins) {
+					$plugins     = new stdClass();
+					$pluginsData = explode("\n", $item->plugins);
+					foreach ($pluginsData as $pluginData) {
+						$parts = explode("=", $pluginData);
+						if ($parts[0]) {
+							$name           = $parts[0];
+							$value          = $parts[1];
+							$plugins->$name = $value;
+						}
+					}
+
+					$item->plugins = $plugins;
 				}
 
 				$lists[$tag->name][] = $item;
