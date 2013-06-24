@@ -103,20 +103,10 @@ class modK2RelatedListsHelper {
 				}
 
 				/**
-				 * Check for and attach plugin data to $item object.
+				 * Check for and attach plugin data to $item object as stdClass.
 				 */
 				if ($item->plugins) {
-					$plugins     = new stdClass();
-					$pluginsData = explode("\n", $item->plugins);
-					foreach ($pluginsData as $pluginData) {
-						$parts = explode("=", $pluginData);
-						if ($parts[0]) {
-							$name           = $parts[0];
-							$value          = $parts[1];
-							$plugins->$name = $value;
-						}
-					}
-
+					$plugins       = (object) parse_ini_string($item->plugins);
 					$item->plugins = $plugins;
 				}
 
