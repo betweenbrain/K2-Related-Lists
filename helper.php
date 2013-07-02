@@ -104,9 +104,11 @@ class modK2RelatedListsHelper {
 
 				/**
 				 * Check for and attach plugin data to $item object as stdClass.
+				 *
+				 * parse_ini_string set to INI_SCANNER_RAW so that option values are not parsed (http://php.net/manual/en/function.parse-ini-string.php)
 				 */
 				if ($item->plugins) {
-					$plugins       = (object) parse_ini_string($item->plugins);
+					$plugins       = (object) parse_ini_string($item->plugins, FALSE, INI_SCANNER_RAW);
 					$item->plugins = $plugins;
 				}
 
