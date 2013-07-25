@@ -27,6 +27,11 @@
 		       default=""
 		       label="MOD_K2_RELATED_LISTS_TAG_LIMIT_LABEL"
 		       description="MOD_K2_RELATED_LISTS_TAG_LIMIT_DESC"/>
+		<param name="itemLimit"
+		       type="text"
+		       default="10"
+		       label="MOD_K2_RELATED_LISTS_ITEM_LIMIT_LABEL"
+		       description="MOD_K2_RELATED_LISTS_ITEM_LIMIT_DESC"/>
 		<param name="includeSelf"
 		       type="list"
 		       default=""

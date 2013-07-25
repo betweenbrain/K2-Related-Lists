@@ -50,14 +50,10 @@ class modK2RelatedListsHelper {
 		$listModel = K2Model::getInstance('Itemlist', 'K2Model');
 		//components/com_k2/helpers/utilities.php
 		$utilities = K2Model::getInstance('Utilities', 'K2Helper');
-
-		$k2Params = $utilities->getParams('com_k2');
-		/*
-		 * Manually set itemRelatedLimit parameter as the categories parameters are not attached to the K2 parameter object yet
-		 * TODO: Figure out why the category's parameters are not attached to the K2 parameter object yet.
-		 */
-		$k2Params->_registry['_default']['data']->itemRelatedLimit = 999;
-		$tags     = $itemModel->getItemTags($itemID);
+		// Get K2 parameters
+		$k2Params  = $utilities->getParams('com_k2');
+		// Get tags by item ID
+		$tags      = $itemModel->getItemTags($itemID);
 
 		/**
 		 * When passing a value of 0 for $itemID, getRelatedItems() will include the current item.
@@ -72,6 +68,13 @@ class modK2RelatedListsHelper {
 		 * Limit the number of lists based on how many tags to use
 		 */
 		$tagLimit = htmlspecialchars($this->params->get('tagLimit'));
+
+		/**
+		 * Limit the number of items to retrieve by manually setting the itemRelatedLimit parameter
+		 */
+		$itemLimit = htmlspecialchars($this->params->get('itemLimit'));
+
+		$k2Params->_registry['_default']['data']->itemRelatedLimit = $itemLimit;
 
 		if ($tagLimit == '' || $tagLimit == '0') {
 			$tagLimit = count($tags);
