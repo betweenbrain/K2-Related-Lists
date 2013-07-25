@@ -52,6 +52,11 @@ class modK2RelatedListsHelper {
 		$utilities = K2Model::getInstance('Utilities', 'K2Helper');
 
 		$k2Params = $utilities->getParams('com_k2');
+		/*
+		 * Manually set itemRelatedLimit parameter as the categories parameters are not attached to the K2 parameter object yet
+		 * TODO: Figure out why the category's parameters are not attached to the K2 parameter object yet.
+		 */
+		$k2Params->_registry['_default']['data']->itemRelatedLimit = 999;
 		$tags     = $itemModel->getItemTags($itemID);
 
 		/**
